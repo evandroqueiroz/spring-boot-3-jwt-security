@@ -1,0 +1,1 @@
+select * from saas_db.core.pessoas
