@@ -50,7 +50,6 @@ public class ServicoService {
                         .id(request.getId_situacao())
                         .build()
         );
-
         return repository.save(servicoExistente);
     }
 
