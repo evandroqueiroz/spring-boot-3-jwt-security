@@ -7,30 +7,40 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/situacoes")
+@RequestMapping("/api/v1")
 @RequiredArgsConstructor
 public class SituacaoController {
 
     private final SituacaoService service;
 
-    @GetMapping
-    public ResponseEntity<List<Situacao>> listarTodas() {
-        return ResponseEntity.ok(service.listarTodas());
+    @PostMapping("/situacao")
+    public ResponseEntity<?> save(@RequestBody SituacaoRequest request) {
+        service.salvar(request);
+        return ResponseEntity.accepted().build();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Situacao> buscar(@PathVariable String id) {
+    @GetMapping("/situacoes")
+    public ResponseEntity<List<Situacao>> buscarTodos() {
+        return ResponseEntity.ok(service.buscarTodos());
+    }
+
+    @GetMapping("/situacao/{id}")
+    public ResponseEntity<Situacao> buscarPorId(@PathVariable String id) {
         return ResponseEntity.ok(service.buscarPorId(id));
     }
 
-    @PostMapping
-    public ResponseEntity<Situacao> salvar(@RequestBody Situacao situacao) {
-        return ResponseEntity.ok(service.salvar(situacao));
+    @PutMapping("/situacao/{id}")
+    public ResponseEntity<Situacao> atualizar(
+            @PathVariable String id,
+            @RequestBody SituacaoRequest request
+    ) {
+        return ResponseEntity.ok(service.atualizar(id, request));
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletar(@PathVariable String id) {
-        service.deletar(id);
+
+    @DeleteMapping("/situacao/{id}")
+    public ResponseEntity<Void> excluirPorId(@PathVariable String id) {
+        service.deletarPorId(id);
         return ResponseEntity.noContent().build();
     }
 }

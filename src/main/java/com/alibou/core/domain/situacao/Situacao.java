@@ -1,10 +1,8 @@
 package com.alibou.core.domain.situacao;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
@@ -13,6 +11,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Builder
+@EntityListeners(AuditingEntityListener.class)
 @NoArgsConstructor
 @AllArgsConstructor
 public class Situacao {
@@ -26,11 +25,5 @@ public class Situacao {
 
     @Column(length = 255, nullable = false)
     private String descricao;
-
-    @Column(name = "data_inicio", nullable = false)
-    private LocalDateTime dataInicio;
-
-    @Column(name = "data_fim")
-    private LocalDateTime dataFim;
 
 }

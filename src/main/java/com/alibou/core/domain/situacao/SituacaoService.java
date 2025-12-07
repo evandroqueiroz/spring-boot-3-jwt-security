@@ -1,5 +1,7 @@
 package com.alibou.core.domain.situacao;
 
+import com.alibou.core.domain.al_produtos.Produto;
+import com.alibou.core.domain.al_produtos.ProdutoRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,20 +13,37 @@ public class SituacaoService {
 
     private final SituacaoRepository repository;
 
-    public Situacao salvar(Situacao situacao) {
-        return repository.save(situacao);
+    public void salvar(SituacaoRequest request) {
+        var situacao = Situacao.builder()
+                .id(request.getId())
+                .nome(request.getNome())
+                .descricao(request.getDescricao())
+                .build();
+        repository.save(situacao);
     }
 
-    public Situacao buscarPorId(String id) {
-        return repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Situação não encontrada"));
-    }
-
-    public List<Situacao> listarTodas() {
+    public List<Situacao> buscarTodos() {
         return repository.findAll();
     }
 
-    public void deletar(String id) {
-        repository.deleteById(id);
+    public Situacao buscarPorId(String id) {
+        return repository.findById(id).orElseThrow(() -> new RuntimeException(("Situação não encontrada")));
+    }
+
+    public Situacao atualizar(String id, SituacaoRequest request) {
+        Situacao situacaoExistente = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Situação não encontrada"));
+
+        situacaoExistente.setNome(request.getNome());
+        situacaoExistente.setDescricao(request.getDescricao());
+
+        return repository.save(situacaoExistente);
+    }
+
+    public void deletarPorId(String id) {
+        Situacao situacao = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Situação não encontrada"));
+
+        repository.delete(situacao);
     }
 }
