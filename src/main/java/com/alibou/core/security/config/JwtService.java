@@ -14,6 +14,7 @@ import java.util.function.Function;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import com.alibou.core.security.user.User;
 
 @Service
 public class JwtService {
@@ -35,7 +36,15 @@ public class JwtService {
   }
 
   public String generateToken(UserDetails userDetails) {
-    return generateToken(new HashMap<>(), userDetails);
+      Map<String, Object> extraClaims = new HashMap<>();
+
+      // Custom logic to add Role and ID to the token
+      if (userDetails instanceof User) {
+          User customUser = (User) userDetails;
+          extraClaims.put("role", customUser.getRole().name());
+          extraClaims.put("id", customUser.getId());
+      }
+      return generateToken(extraClaims, userDetails);
   }
 
   public String generateToken(

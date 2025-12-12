@@ -3,6 +3,7 @@ package com.alibou.core.domain.agendamentos;
 import com.alibou.core.domain.al_produtos.Produto;
 import com.alibou.core.domain.al_servicos.Servico;
 import com.alibou.core.domain.pessoas.Pessoa;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedBy;
@@ -19,6 +20,7 @@ import java.time.LocalDateTime;
 @Setter
 @Builder
 @EntityListeners(AuditingEntityListener.class)
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @NoArgsConstructor
 @AllArgsConstructor
 public class Agendamento {

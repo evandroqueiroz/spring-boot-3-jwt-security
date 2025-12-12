@@ -1,6 +1,7 @@
 package com.alibou.core.domain.pessoas;
 
 import com.alibou.core.domain.empresa.Empresa;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -13,6 +14,7 @@ import java.time.LocalDateTime;
 @Setter
 @Builder
 @EntityListeners(AuditingEntityListener.class)
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) // <--- ADD THIS LINE
 @NoArgsConstructor
 @AllArgsConstructor
 public class Pessoa {
