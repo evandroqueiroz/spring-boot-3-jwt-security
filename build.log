@@ -124,52 +124,52 @@ WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
   location: variable request of type com.alibou.core.domain.situacao.SituacaoRequest
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_servicos/ServicoService.java:[16,30] cannot find symbol
   symbol:   method builder()
-  location: class com.alibou.core.domain.al_servicos.Servico
+  location: class com.alibou.core.domain.servicos.Servico
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_servicos/ServicoService.java:[17,28] cannot find symbol
   symbol:   method getId()
-  location: variable request of type com.alibou.core.domain.al_servicos.ServicoRequest
+  location: variable request of type com.alibou.core.domain.servicos.ServicoRequest
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_servicos/ServicoService.java:[18,30] cannot find symbol
   symbol:   method getNome()
-  location: variable request of type com.alibou.core.domain.al_servicos.ServicoRequest
+  location: variable request of type com.alibou.core.domain.servicos.ServicoRequest
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_servicos/ServicoService.java:[19,35] cannot find symbol
   symbol:   method getCategoria()
-  location: variable request of type com.alibou.core.domain.al_servicos.ServicoRequest
+  location: variable request of type com.alibou.core.domain.servicos.ServicoRequest
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_servicos/ServicoService.java:[20,41] cannot find symbol
   symbol:   method getDuracao_minutos()
-  location: variable request of type com.alibou.core.domain.al_servicos.ServicoRequest
+  location: variable request of type com.alibou.core.domain.servicos.ServicoRequest
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_servicos/ServicoService.java:[21,31] cannot find symbol
   symbol:   method getPreco()
-  location: variable request of type com.alibou.core.domain.al_servicos.ServicoRequest
+  location: variable request of type com.alibou.core.domain.servicos.ServicoRequest
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_servicos/ServicoService.java:[22,35] cannot find symbol
   symbol:   method getDescricao()
-  location: variable request of type com.alibou.core.domain.al_servicos.ServicoRequest
+  location: variable request of type com.alibou.core.domain.servicos.ServicoRequest
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_servicos/ServicoService.java:[23,35] cannot find symbol
   symbol:   method builder()
   location: class com.alibou.core.domain.situacao.Situacao
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_servicos/ServicoService.java:[24,51] cannot find symbol
   symbol:   method getId_situacao()
-  location: variable request of type com.alibou.core.domain.al_servicos.ServicoRequest
+  location: variable request of type com.alibou.core.domain.servicos.ServicoRequest
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_servicos/ServicoService.java:[43,41] cannot find symbol
   symbol:   method getNome()
-  location: variable request of type com.alibou.core.domain.al_servicos.ServicoRequest
+  location: variable request of type com.alibou.core.domain.servicos.ServicoRequest
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_servicos/ServicoService.java:[44,46] cannot find symbol
   symbol:   method getCategoria()
-  location: variable request of type com.alibou.core.domain.al_servicos.ServicoRequest
+  location: variable request of type com.alibou.core.domain.servicos.ServicoRequest
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_servicos/ServicoService.java:[45,52] cannot find symbol
   symbol:   method getDuracao_minutos()
-  location: variable request of type com.alibou.core.domain.al_servicos.ServicoRequest
+  location: variable request of type com.alibou.core.domain.servicos.ServicoRequest
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_servicos/ServicoService.java:[46,42] cannot find symbol
   symbol:   method getPreco()
-  location: variable request of type com.alibou.core.domain.al_servicos.ServicoRequest
+  location: variable request of type com.alibou.core.domain.servicos.ServicoRequest
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_servicos/ServicoService.java:[47,46] cannot find symbol
   symbol:   method getDescricao()
-  location: variable request of type com.alibou.core.domain.al_servicos.ServicoRequest
+  location: variable request of type com.alibou.core.domain.servicos.ServicoRequest
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_servicos/ServicoService.java:[49,25] cannot find symbol
   symbol:   method builder()
   location: class com.alibou.core.domain.situacao.Situacao
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_servicos/ServicoService.java:[50,36] cannot find symbol
   symbol:   method getId_situacao()
-  location: variable request of type com.alibou.core.domain.al_servicos.ServicoRequest
+  location: variable request of type com.alibou.core.domain.servicos.ServicoRequest
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/security/auth/AuthenticationService.java:[31,20] cannot find symbol
   symbol:   method builder()
   location: class com.alibou.core.security.user.User
@@ -220,52 +220,52 @@ WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
   location: class com.alibou.core.security.auth.RegisterRequest
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_produtos/ProdutoService.java:[16,30] cannot find symbol
   symbol:   method builder()
-  location: class com.alibou.core.domain.al_produtos.Produto
+  location: class com.alibou.core.domain.produtos.Produto
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_produtos/ProdutoService.java:[17,28] cannot find symbol
   symbol:   method getId()
-  location: variable request of type com.alibou.core.domain.al_produtos.ProdutoRequest
+  location: variable request of type com.alibou.core.domain.produtos.ProdutoRequest
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_produtos/ProdutoService.java:[18,30] cannot find symbol
   symbol:   method getNome()
-  location: variable request of type com.alibou.core.domain.al_produtos.ProdutoRequest
+  location: variable request of type com.alibou.core.domain.produtos.ProdutoRequest
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_produtos/ProdutoService.java:[19,35] cannot find symbol
   symbol:   method getCategoria()
-  location: variable request of type com.alibou.core.domain.al_produtos.ProdutoRequest
+  location: variable request of type com.alibou.core.domain.produtos.ProdutoRequest
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_produtos/ProdutoService.java:[20,37] cannot find symbol
   symbol:   method getPrecoCompra()
-  location: variable request of type com.alibou.core.domain.al_produtos.ProdutoRequest
+  location: variable request of type com.alibou.core.domain.produtos.ProdutoRequest
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_produtos/ProdutoService.java:[21,36] cannot find symbol
   symbol:   method getPrecoVenda()
-  location: variable request of type com.alibou.core.domain.al_produtos.ProdutoRequest
+  location: variable request of type com.alibou.core.domain.produtos.ProdutoRequest
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_produtos/ProdutoService.java:[22,35] cannot find symbol
   symbol:   method getDescricao()
-  location: variable request of type com.alibou.core.domain.al_produtos.ProdutoRequest
+  location: variable request of type com.alibou.core.domain.produtos.ProdutoRequest
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_produtos/ProdutoService.java:[23,35] cannot find symbol
   symbol:   method builder()
   location: class com.alibou.core.domain.situacao.Situacao
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_produtos/ProdutoService.java:[24,51] cannot find symbol
   symbol:   method getId_situacao()
-  location: variable request of type com.alibou.core.domain.al_produtos.ProdutoRequest
+  location: variable request of type com.alibou.core.domain.produtos.ProdutoRequest
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_produtos/ProdutoService.java:[43,41] cannot find symbol
   symbol:   method getNome()
-  location: variable request of type com.alibou.core.domain.al_produtos.ProdutoRequest
+  location: variable request of type com.alibou.core.domain.produtos.ProdutoRequest
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_produtos/ProdutoService.java:[44,46] cannot find symbol
   symbol:   method getCategoria()
-  location: variable request of type com.alibou.core.domain.al_produtos.ProdutoRequest
+  location: variable request of type com.alibou.core.domain.produtos.ProdutoRequest
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_produtos/ProdutoService.java:[45,48] cannot find symbol
   symbol:   method getPrecoCompra()
-  location: variable request of type com.alibou.core.domain.al_produtos.ProdutoRequest
+  location: variable request of type com.alibou.core.domain.produtos.ProdutoRequest
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_produtos/ProdutoService.java:[46,47] cannot find symbol
   symbol:   method getPrecoVenda()
-  location: variable request of type com.alibou.core.domain.al_produtos.ProdutoRequest
+  location: variable request of type com.alibou.core.domain.produtos.ProdutoRequest
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_produtos/ProdutoService.java:[47,46] cannot find symbol
   symbol:   method getDescricao()
-  location: variable request of type com.alibou.core.domain.al_produtos.ProdutoRequest
+  location: variable request of type com.alibou.core.domain.produtos.ProdutoRequest
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_produtos/ProdutoService.java:[49,25] cannot find symbol
   symbol:   method builder()
   location: class com.alibou.core.domain.situacao.Situacao
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_produtos/ProdutoService.java:[50,36] cannot find symbol
   symbol:   method getId_situacao()
-  location: variable request of type com.alibou.core.domain.al_produtos.ProdutoRequest
+  location: variable request of type com.alibou.core.domain.produtos.ProdutoRequest
 [INFO] 77 errors 
 [INFO] -------------------------------------------------------------
 [INFO] ------------------------------------------------------------------------
@@ -373,52 +373,52 @@ WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
 [ERROR]   location: variable request of type com.alibou.core.domain.situacao.SituacaoRequest
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_servicos/ServicoService.java:[16,30] cannot find symbol
 [ERROR]   symbol:   method builder()
-[ERROR]   location: class com.alibou.core.domain.al_servicos.Servico
+[ERROR]   location: class com.alibou.core.domain.servicos.Servico
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_servicos/ServicoService.java:[17,28] cannot find symbol
 [ERROR]   symbol:   method getId()
-[ERROR]   location: variable request of type com.alibou.core.domain.al_servicos.ServicoRequest
+[ERROR]   location: variable request of type com.alibou.core.domain.servicos.ServicoRequest
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_servicos/ServicoService.java:[18,30] cannot find symbol
 [ERROR]   symbol:   method getNome()
-[ERROR]   location: variable request of type com.alibou.core.domain.al_servicos.ServicoRequest
+[ERROR]   location: variable request of type com.alibou.core.domain.servicos.ServicoRequest
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_servicos/ServicoService.java:[19,35] cannot find symbol
 [ERROR]   symbol:   method getCategoria()
-[ERROR]   location: variable request of type com.alibou.core.domain.al_servicos.ServicoRequest
+[ERROR]   location: variable request of type com.alibou.core.domain.servicos.ServicoRequest
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_servicos/ServicoService.java:[20,41] cannot find symbol
 [ERROR]   symbol:   method getDuracao_minutos()
-[ERROR]   location: variable request of type com.alibou.core.domain.al_servicos.ServicoRequest
+[ERROR]   location: variable request of type com.alibou.core.domain.servicos.ServicoRequest
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_servicos/ServicoService.java:[21,31] cannot find symbol
 [ERROR]   symbol:   method getPreco()
-[ERROR]   location: variable request of type com.alibou.core.domain.al_servicos.ServicoRequest
+[ERROR]   location: variable request of type com.alibou.core.domain.servicos.ServicoRequest
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_servicos/ServicoService.java:[22,35] cannot find symbol
 [ERROR]   symbol:   method getDescricao()
-[ERROR]   location: variable request of type com.alibou.core.domain.al_servicos.ServicoRequest
+[ERROR]   location: variable request of type com.alibou.core.domain.servicos.ServicoRequest
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_servicos/ServicoService.java:[23,35] cannot find symbol
 [ERROR]   symbol:   method builder()
 [ERROR]   location: class com.alibou.core.domain.situacao.Situacao
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_servicos/ServicoService.java:[24,51] cannot find symbol
 [ERROR]   symbol:   method getId_situacao()
-[ERROR]   location: variable request of type com.alibou.core.domain.al_servicos.ServicoRequest
+[ERROR]   location: variable request of type com.alibou.core.domain.servicos.ServicoRequest
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_servicos/ServicoService.java:[43,41] cannot find symbol
 [ERROR]   symbol:   method getNome()
-[ERROR]   location: variable request of type com.alibou.core.domain.al_servicos.ServicoRequest
+[ERROR]   location: variable request of type com.alibou.core.domain.servicos.ServicoRequest
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_servicos/ServicoService.java:[44,46] cannot find symbol
 [ERROR]   symbol:   method getCategoria()
-[ERROR]   location: variable request of type com.alibou.core.domain.al_servicos.ServicoRequest
+[ERROR]   location: variable request of type com.alibou.core.domain.servicos.ServicoRequest
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_servicos/ServicoService.java:[45,52] cannot find symbol
 [ERROR]   symbol:   method getDuracao_minutos()
-[ERROR]   location: variable request of type com.alibou.core.domain.al_servicos.ServicoRequest
+[ERROR]   location: variable request of type com.alibou.core.domain.servicos.ServicoRequest
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_servicos/ServicoService.java:[46,42] cannot find symbol
 [ERROR]   symbol:   method getPreco()
-[ERROR]   location: variable request of type com.alibou.core.domain.al_servicos.ServicoRequest
+[ERROR]   location: variable request of type com.alibou.core.domain.servicos.ServicoRequest
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_servicos/ServicoService.java:[47,46] cannot find symbol
 [ERROR]   symbol:   method getDescricao()
-[ERROR]   location: variable request of type com.alibou.core.domain.al_servicos.ServicoRequest
+[ERROR]   location: variable request of type com.alibou.core.domain.servicos.ServicoRequest
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_servicos/ServicoService.java:[49,25] cannot find symbol
 [ERROR]   symbol:   method builder()
 [ERROR]   location: class com.alibou.core.domain.situacao.Situacao
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_servicos/ServicoService.java:[50,36] cannot find symbol
 [ERROR]   symbol:   method getId_situacao()
-[ERROR]   location: variable request of type com.alibou.core.domain.al_servicos.ServicoRequest
+[ERROR]   location: variable request of type com.alibou.core.domain.servicos.ServicoRequest
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/security/auth/AuthenticationService.java:[31,20] cannot find symbol
 [ERROR]   symbol:   method builder()
 [ERROR]   location: class com.alibou.core.security.user.User
@@ -469,52 +469,52 @@ WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
 [ERROR]   location: class com.alibou.core.security.auth.RegisterRequest
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_produtos/ProdutoService.java:[16,30] cannot find symbol
 [ERROR]   symbol:   method builder()
-[ERROR]   location: class com.alibou.core.domain.al_produtos.Produto
+[ERROR]   location: class com.alibou.core.domain.produtos.Produto
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_produtos/ProdutoService.java:[17,28] cannot find symbol
 [ERROR]   symbol:   method getId()
-[ERROR]   location: variable request of type com.alibou.core.domain.al_produtos.ProdutoRequest
+[ERROR]   location: variable request of type com.alibou.core.domain.produtos.ProdutoRequest
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_produtos/ProdutoService.java:[18,30] cannot find symbol
 [ERROR]   symbol:   method getNome()
-[ERROR]   location: variable request of type com.alibou.core.domain.al_produtos.ProdutoRequest
+[ERROR]   location: variable request of type com.alibou.core.domain.produtos.ProdutoRequest
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_produtos/ProdutoService.java:[19,35] cannot find symbol
 [ERROR]   symbol:   method getCategoria()
-[ERROR]   location: variable request of type com.alibou.core.domain.al_produtos.ProdutoRequest
+[ERROR]   location: variable request of type com.alibou.core.domain.produtos.ProdutoRequest
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_produtos/ProdutoService.java:[20,37] cannot find symbol
 [ERROR]   symbol:   method getPrecoCompra()
-[ERROR]   location: variable request of type com.alibou.core.domain.al_produtos.ProdutoRequest
+[ERROR]   location: variable request of type com.alibou.core.domain.produtos.ProdutoRequest
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_produtos/ProdutoService.java:[21,36] cannot find symbol
 [ERROR]   symbol:   method getPrecoVenda()
-[ERROR]   location: variable request of type com.alibou.core.domain.al_produtos.ProdutoRequest
+[ERROR]   location: variable request of type com.alibou.core.domain.produtos.ProdutoRequest
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_produtos/ProdutoService.java:[22,35] cannot find symbol
 [ERROR]   symbol:   method getDescricao()
-[ERROR]   location: variable request of type com.alibou.core.domain.al_produtos.ProdutoRequest
+[ERROR]   location: variable request of type com.alibou.core.domain.produtos.ProdutoRequest
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_produtos/ProdutoService.java:[23,35] cannot find symbol
 [ERROR]   symbol:   method builder()
 [ERROR]   location: class com.alibou.core.domain.situacao.Situacao
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_produtos/ProdutoService.java:[24,51] cannot find symbol
 [ERROR]   symbol:   method getId_situacao()
-[ERROR]   location: variable request of type com.alibou.core.domain.al_produtos.ProdutoRequest
+[ERROR]   location: variable request of type com.alibou.core.domain.produtos.ProdutoRequest
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_produtos/ProdutoService.java:[43,41] cannot find symbol
 [ERROR]   symbol:   method getNome()
-[ERROR]   location: variable request of type com.alibou.core.domain.al_produtos.ProdutoRequest
+[ERROR]   location: variable request of type com.alibou.core.domain.produtos.ProdutoRequest
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_produtos/ProdutoService.java:[44,46] cannot find symbol
 [ERROR]   symbol:   method getCategoria()
-[ERROR]   location: variable request of type com.alibou.core.domain.al_produtos.ProdutoRequest
+[ERROR]   location: variable request of type com.alibou.core.domain.produtos.ProdutoRequest
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_produtos/ProdutoService.java:[45,48] cannot find symbol
 [ERROR]   symbol:   method getPrecoCompra()
-[ERROR]   location: variable request of type com.alibou.core.domain.al_produtos.ProdutoRequest
+[ERROR]   location: variable request of type com.alibou.core.domain.produtos.ProdutoRequest
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_produtos/ProdutoService.java:[46,47] cannot find symbol
 [ERROR]   symbol:   method getPrecoVenda()
-[ERROR]   location: variable request of type com.alibou.core.domain.al_produtos.ProdutoRequest
+[ERROR]   location: variable request of type com.alibou.core.domain.produtos.ProdutoRequest
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_produtos/ProdutoService.java:[47,46] cannot find symbol
 [ERROR]   symbol:   method getDescricao()
-[ERROR]   location: variable request of type com.alibou.core.domain.al_produtos.ProdutoRequest
+[ERROR]   location: variable request of type com.alibou.core.domain.produtos.ProdutoRequest
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_produtos/ProdutoService.java:[49,25] cannot find symbol
 [ERROR]   symbol:   method builder()
 [ERROR]   location: class com.alibou.core.domain.situacao.Situacao
 [ERROR] /C:/Projetos/spring-boot-3-jwt-security/src/main/java/com/alibou/core/domain/al_produtos/ProdutoService.java:[50,36] cannot find symbol
 [ERROR]   symbol:   method getId_situacao()
-[ERROR]   location: variable request of type com.alibou.core.domain.al_produtos.ProdutoRequest
+[ERROR]   location: variable request of type com.alibou.core.domain.produtos.ProdutoRequest
 [ERROR] -> [Help 1]
 [ERROR] 
 [ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.

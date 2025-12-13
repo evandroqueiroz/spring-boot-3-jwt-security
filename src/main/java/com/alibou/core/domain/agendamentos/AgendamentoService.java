@@ -1,7 +1,7 @@
 package com.alibou.core.domain.agendamentos;
 
-import com.alibou.core.domain.al_produtos.Produto;
-import com.alibou.core.domain.al_servicos.Servico;
+import com.alibou.core.domain.produtos.Produto;
+import com.alibou.core.domain.servicos.Servico;
 import com.alibou.core.domain.pessoas.Pessoa;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -32,12 +32,6 @@ public class AgendamentoService {
     }
     if (request.getIdProfissional() != null) {
       agendamentoBuilder.profissional(Pessoa.builder().id(request.getIdProfissional()).build());
-    }
-    if (request.getIdServico() != null) {
-      agendamentoBuilder.servico(Servico.builder().id(request.getIdServico()).build());
-    }
-    if (request.getIdProdutoVinculado() != null) {
-      agendamentoBuilder.produtoVinculado(Produto.builder().id(request.getIdProdutoVinculado()).build());
     }
 
     repository.save(agendamentoBuilder.build());

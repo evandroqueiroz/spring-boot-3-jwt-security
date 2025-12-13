@@ -1,7 +1,5 @@
 package com.alibou.core.domain.situacao;
 
-import com.alibou.core.domain.al_produtos.Produto;
-import com.alibou.core.domain.al_produtos.ProdutoRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
