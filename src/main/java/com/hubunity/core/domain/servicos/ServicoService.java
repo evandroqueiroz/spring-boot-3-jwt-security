@@ -191,17 +191,17 @@ public class ServicoService {
 
     private ServicoResponse toResponse(Servico servico) {
         return new ServicoResponse(
-                servico.getId(),
-                servico.getSituacao() != null ? servico.getSituacao().getId() : null,
-                servico.getEmpresa() != null ? servico.getEmpresa().getId() : null,
-                servico.getCodigo(),
-                servico.getNome(),
-                servico.getDescricao(),
-                servico.getCategoria(),
-                servico.getPreco(),
-                servico.getPrecoPromocional(),
-                servico.getDuracaoMinutos(),
-                servico.getTempoToleranciaMin()
+            servico.getId(),
+            servico.getSituacao() != null ? servico.getSituacao().getId() : null,
+            servico.getEmpresa() != null ? servico.getEmpresa().getId() : null,
+            servico.getCodigo(),
+            servico.getNome(),
+            servico.getDescricao(),
+            servico.getCategoria(),
+            servico.getPreco(),
+            servico.getPrecoPromocional(),
+            servico.getDuracaoMinutos(),
+            servico.getTempoToleranciaMin()
         );
     }
 
