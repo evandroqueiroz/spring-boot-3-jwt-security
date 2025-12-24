@@ -1,5 +1,6 @@
 package com.hubunity.core.domain.pessoas;
 
+import com.hubunity.core.common.context.TenantContext;
 import com.hubunity.core.domain.dicsituacao.Situacao;
 import com.hubunity.core.domain.empresa.Empresa;
 
@@ -28,7 +29,7 @@ public class PessoaService {
     public PessoaResponse criar(PessoaRequest request) {
         Pessoa pessoa = new Pessoa();
 
-        pessoa.setEmpresa(entityManager.getReference(Empresa.class, request.getIdEmpresa()));
+        pessoa.setEmpresa(getEmpresaFromTenant());
         pessoa.setSituacao(entityManager.getReference(Situacao.class, request.getIdSituacao()));
         pessoa.setTipoPessoa(request.getTipoPessoa());
         pessoa.setRazaoSocial(request.getRazaoSocial());
@@ -45,13 +46,15 @@ public class PessoaService {
         return toResponse(saved);
     }
 
+
     // -------------------- PUT -------------------- //
 
     @Transactional
     public PessoaResponse atualizar(String id, PessoaRequest request) {
-        Pessoa pessoa = pessoaRepository.findById(id).orElseThrow(() -> new RuntimeException("Pessoa não encontrada"));
+        Pessoa pessoa = pessoaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Pessoa não encontrada"));
 
-        pessoa.setEmpresa(entityManager.getReference(Empresa.class, request.getIdEmpresa()));
+        pessoa.setEmpresa(getEmpresaFromTenant());
         pessoa.setSituacao(entityManager.getReference(Situacao.class, request.getIdSituacao()));
         pessoa.setTipoPessoa(request.getTipoPessoa());
         pessoa.setRazaoSocial(request.getRazaoSocial());
@@ -67,6 +70,7 @@ public class PessoaService {
         Pessoa updated = pessoaRepository.save(pessoa);
         return toResponse(updated);
     }
+
 
     // -------------------- GET -------------------- //
 
@@ -115,5 +119,16 @@ public class PessoaService {
                 pessoa.getUpdatedAt()
         );
     }
+
+    private Empresa getEmpresaFromTenant() {
+        String idEmpresa = TenantContext.getCurrentTenant();
+
+        if (idEmpresa == null || idEmpresa.isBlank()) {
+            throw new IllegalStateException("Empresa não encontrada no contexto do tenant");
+        }
+
+        return entityManager.getReference(Empresa.class, idEmpresa);
+    }
+
 
 }

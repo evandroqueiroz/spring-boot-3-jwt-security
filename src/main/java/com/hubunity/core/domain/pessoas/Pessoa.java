@@ -70,9 +70,36 @@ public class Pessoa {
     private Date updatedAt;
 
     @PrePersist
-    public void prePersist() {
-        this.createdAt = new Date();
+    @PreUpdate
+    private void preSave() {
+        normalizePfPj();
         this.updatedAt = new Date();
+        if (this.createdAt == null) {
+            this.createdAt = new Date();
+        }
     }
+
+    private void normalizePfPj() {
+
+        // Converte strings vazias em NULL
+        razaoSocial = emptyToNull(razaoSocial);
+        nomeFantasia = emptyToNull(nomeFantasia);
+        nomeCompleto = emptyToNull(nomeCompleto);
+
+        if ("PF".equalsIgnoreCase(tipoPessoa)) {
+            razaoSocial = null;
+            nomeFantasia = null;
+        }
+
+        if ("PJ".equalsIgnoreCase(tipoPessoa)) {
+            nomeCompleto = null;
+            dataNascimento = null; // opcional, mas recomendado
+        }
+    }
+
+    private String emptyToNull(String value) {
+        return (value == null || value.trim().isEmpty()) ? null : value;
+    }
+
 
 }
