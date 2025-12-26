@@ -23,11 +23,3 @@ public interface ProdutoRepository extends JpaRepository<Produto, String> {
 
     List<Produto> findByNomeContainingIgnoreCase(String nome);
 }
-
-@Repository
-interface ProdutoEstoqueMovRepository extends JpaRepository<ProdutoEstoqueMov, String> {
-
-    List<ProdutoEstoqueMov> findByProduto_Id(String idProduto);
-
-    List<ProdutoEstoqueMov> findByTipoMov(String tipoMov);
-}

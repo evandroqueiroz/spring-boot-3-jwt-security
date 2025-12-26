@@ -1,5 +1,6 @@
 package com.hubunity.core.domain.produtos;
 
+import com.hubunity.core.common.context.TenantContext;
 import com.hubunity.core.domain.dicsituacao.Situacao;
 import com.hubunity.core.domain.empresa.Empresa;
 import com.hubunity.core.domain.unidademedida.UnidadeMedida;
@@ -38,7 +39,7 @@ public class ProdutoService {
 
         produto.setSituacao(entityManager.getReference(Situacao.class, request.getIdSituacao()));
         produto.setUnidadeMedida(entityManager.getReference(UnidadeMedida.class, request.getIdUnidadeMedida()));
-        produto.setEmpresa(entityManager.getReference(Empresa.class, request.getIdEmpresa()));
+        produto.setEmpresa(getEmpresaFromTenant());
 
         Produto saved = produtoRepository.save(produto);
         return toResponse(saved);
@@ -50,7 +51,7 @@ public class ProdutoService {
                 .orElseThrow(() -> new RuntimeException("Produto não encontrado"));
 
         ProdutoEstoqueMov mov = new ProdutoEstoqueMov();
-        mov.setEmpresa(entityManager.getReference(Empresa.class, request.getIdEmpresa()));
+        mov.setEmpresa(getEmpresaFromTenant());
         mov.setProduto(entityManager.getReference(Produto.class, request.getIdProduto()));
 
         mov.setTipoMov(request.getTipoMov());
@@ -95,12 +96,11 @@ public class ProdutoService {
 
         produto.setSituacao(entityManager.getReference(Situacao.class, request.getIdSituacao()));
         produto.setUnidadeMedida(entityManager.getReference(UnidadeMedida.class, request.getIdUnidadeMedida()));
-        produto.setEmpresa(entityManager.getReference(Empresa.class, request.getIdEmpresa()));
+        produto.setEmpresa(getEmpresaFromTenant());
 
         Produto updated = produtoRepository.save(produto);
         return toResponse(updated);
     }
-
 
     // -------------------- GET -------------------- //
 
@@ -132,6 +132,27 @@ public class ProdutoService {
                 .collect(Collectors.toList());
     }
 
+    @Transactional(readOnly = true)
+    public List<ProdutoEstoqueMovResponse> listarMovimentacoes() {
+        return estoqueMovRepository.findAll().stream()
+                .map(this::toMovResponse)
+                .collect(Collectors.toList());
+    }
+
+
+    private ProdutoEstoqueMovResponse toMovResponse(ProdutoEstoqueMov mov) {
+        return ProdutoEstoqueMovResponse.builder()
+                .id(mov.getId())
+                .idEmpresa(mov.getEmpresa().getId())
+                .idProduto(mov.getProduto().getId())
+                .nomeProduto(mov.getProduto().getNome())
+                .tipoMov(mov.getTipoMov())
+                .quantidade(mov.getQuantidade())
+                .dataMov(mov.getDataMov())
+                .observacao(mov.getObservacao())
+                .build();
+    }
+
     // -------------------- DELETE -------------------- //
 
     @Transactional
@@ -157,7 +178,17 @@ public class ProdutoService {
                 produto.getPrecoCompra(),
                 produto.getPrecoVenda(),
                 produto.getEstoqueMinimo(),
-                produto.getEstoqueAtual()
-        );
+                produto.getEstoqueAtual());
     }
+
+    private Empresa getEmpresaFromTenant() {
+        String idEmpresa = TenantContext.getCurrentTenant();
+
+        if (idEmpresa == null || idEmpresa.isBlank()) {
+            throw new IllegalStateException("Empresa não encontrada no contexto do tenant");
+        }
+
+        return entityManager.getReference(Empresa.class, idEmpresa);
+    }
+
 }

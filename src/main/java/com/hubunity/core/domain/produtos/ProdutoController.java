@@ -64,4 +64,11 @@ public class ProdutoController {
         produtoService.movimentarEstoque(request);
         return ResponseEntity.ok().build();
     }
+
+    @GetMapping("/produto/movimentacoes")
+    public ResponseEntity<List<ProdutoEstoqueMovResponse>> listarMovimentacoes() {
+        List<ProdutoEstoqueMovResponse> movimentacoes = produtoService.listarMovimentacoes();
+        return ResponseEntity.ok(movimentacoes);
+    }
+
 }
