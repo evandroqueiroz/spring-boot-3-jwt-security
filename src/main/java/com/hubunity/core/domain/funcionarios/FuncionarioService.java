@@ -1,5 +1,6 @@
 package com.hubunity.core.domain.funcionarios;
 
+import com.hubunity.core.common.context.TenantContext;
 import com.hubunity.core.domain.empresa.Empresa;
 import com.hubunity.core.domain.pessoas.Pessoa;
 import jakarta.persistence.EntityManager;
@@ -26,7 +27,7 @@ public class FuncionarioService {
     public FuncionarioResponse criar(FuncionarioRequest request) {
         Funcionario funcionario = new Funcionario();
 
-        funcionario.setEmpresa(entityManager.getReference(Empresa.class, request.getIdEmpresa()));
+        funcionario.setEmpresa(getEmpresaFromTenant());
         funcionario.setPessoa(entityManager.getReference(Pessoa.class, request.getIdPessoa()));
         funcionario.setFuncao(request.getFuncao());
         funcionario.setSalario(request.getSalario());
@@ -43,7 +44,7 @@ public class FuncionarioService {
         Funcionario funcionario = funcionarioRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Funcionário não encontrado"));
 
-        funcionario.setEmpresa(entityManager.getReference(Empresa.class, request.getIdEmpresa()));
+        funcionario.setEmpresa(getEmpresaFromTenant());
         funcionario.setPessoa(entityManager.getReference(Pessoa.class, request.getIdPessoa()));
         funcionario.setFuncao(request.getFuncao());
         funcionario.setSalario(request.getSalario());
@@ -98,5 +99,16 @@ public class FuncionarioService {
             funcionario.getDataAdmissao()
         );
     }
+
+    private Empresa getEmpresaFromTenant() {
+        String idEmpresa = TenantContext.getCurrentTenant();
+
+        if (idEmpresa == null || idEmpresa.isBlank()) {
+            throw new IllegalStateException("Empresa não encontrada no contexto do tenant");
+        }
+
+        return entityManager.getReference(Empresa.class, idEmpresa);
+    }
+
 }
 

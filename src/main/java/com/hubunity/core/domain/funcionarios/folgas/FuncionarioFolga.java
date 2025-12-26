@@ -1,4 +1,4 @@
-package com.hubunity.core.domain.horariotrabalho;
+package com.hubunity.core.domain.funcionarios.folgas;
 
 import com.hubunity.core.domain.empresa.Empresa;
 import com.hubunity.core.domain.funcionarios.Funcionario;
@@ -7,15 +7,15 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalTime;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
-@Table(name = "horario_trabalho", schema = "core")
+@Table(name = "funcionario_folgas", schema = "core")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class HorarioTrabalho {
+public class FuncionarioFolga {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,23 +30,23 @@ public class HorarioTrabalho {
   @JoinColumn(name = "id_funcionario", nullable = false)
   private Funcionario funcionario;
 
-  @Column(name = "dia_semana", nullable = false)
-  private Integer diaSemana; // 0=Domingo, 1=Segunda...
+  @Column(name = "data_inicio", nullable = false)
+  private LocalDate dataInicio;
 
-  @Column(name = "hora_inicio", nullable = false)
-  private LocalTime horaInicio;
+  @Column(name = "data_fim", nullable = false)
+  private LocalDate dataFim;
 
-  @Column(name = "hora_fim", nullable = false)
-  private LocalTime horaFim;
+  @Column(name = "motivo", nullable = false, length = 200)
+  private String motivo;
 
-  @Column(name = "intervalo_inicio")
-  private LocalTime intervaloInicio;
+  @Column(name = "tipo", length = 50)
+  private String tipo;
 
-  @Column(name = "intervalo_fim")
-  private LocalTime intervaloFim;
+  @Column(name = "aprovado")
+  private Boolean aprovado = false;
 
-  @Column(name = "ativo", nullable = false)
-  private Boolean ativo = true;
+  @Column(name = "observacoes", columnDefinition = "TEXT")
+  private String observacoes;
 
   @Column(name = "created_at")
   @Temporal(TemporalType.TIMESTAMP)

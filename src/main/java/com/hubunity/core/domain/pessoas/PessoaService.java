@@ -10,7 +10,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -46,7 +45,6 @@ public class PessoaService {
         return toResponse(saved);
     }
 
-
     // -------------------- PUT -------------------- //
 
     @Transactional
@@ -71,7 +69,6 @@ public class PessoaService {
         return toResponse(updated);
     }
 
-
     // -------------------- GET -------------------- //
 
     @Transactional(readOnly = true)
@@ -92,7 +89,7 @@ public class PessoaService {
 
     @Transactional
     public void deletar(String id) {
-        if(!pessoaRepository.existsById(id)) {
+        if (!pessoaRepository.existsById(id)) {
             throw new RuntimeException("Pessoa não encontrada");
         }
         pessoaRepository.deleteById(id);
@@ -116,8 +113,7 @@ public class PessoaService {
                 pessoa.getCelular(),
                 pessoa.getDataNascimento(),
                 pessoa.getCreatedAt(),
-                pessoa.getUpdatedAt()
-        );
+                pessoa.getUpdatedAt());
     }
 
     private Empresa getEmpresaFromTenant() {
@@ -129,6 +125,5 @@ public class PessoaService {
 
         return entityManager.getReference(Empresa.class, idEmpresa);
     }
-
 
 }

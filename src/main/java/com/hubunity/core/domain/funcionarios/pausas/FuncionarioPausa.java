@@ -1,4 +1,4 @@
-package com.hubunity.core.domain.horariotrabalho;
+package com.hubunity.core.domain.funcionarios.pausas;
 
 import com.hubunity.core.domain.empresa.Empresa;
 import com.hubunity.core.domain.funcionarios.Funcionario;
@@ -11,11 +11,11 @@ import java.time.LocalTime;
 import java.util.Date;
 
 @Entity
-@Table(name = "horario_trabalho", schema = "core")
+@Table(name = "funcionario_pausas", schema = "core")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class HorarioTrabalho {
+public class FuncionarioPausa {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,22 +30,19 @@ public class HorarioTrabalho {
   @JoinColumn(name = "id_funcionario", nullable = false)
   private Funcionario funcionario;
 
-  @Column(name = "dia_semana", nullable = false)
-  private Integer diaSemana; // 0=Domingo, 1=Segunda...
+  @Column(name = "tipo", nullable = false, length = 20)
+  private String tipo;
 
-  @Column(name = "hora_inicio", nullable = false)
-  private LocalTime horaInicio;
+  @Column(name = "horario_inicio", nullable = false)
+  private LocalTime horarioInicio;
 
-  @Column(name = "hora_fim", nullable = false)
-  private LocalTime horaFim;
+  @Column(name = "horario_fim", nullable = false)
+  private LocalTime horarioFim;
 
-  @Column(name = "intervalo_inicio")
-  private LocalTime intervaloInicio;
+  @Column(name = "descricao", length = 200)
+  private String descricao;
 
-  @Column(name = "intervalo_fim")
-  private LocalTime intervaloFim;
-
-  @Column(name = "ativo", nullable = false)
+  @Column(name = "ativo")
   private Boolean ativo = true;
 
   @Column(name = "created_at")

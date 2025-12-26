@@ -10,5 +10,9 @@ public interface HorarioTrabalhoRepository extends JpaRepository<HorarioTrabalho
 
   List<HorarioTrabalho> findByFuncionarioId(String idFuncionario);
 
+  List<HorarioTrabalho> findByDiaSemana(Integer diaSemana);
+
+  List<HorarioTrabalho> findByAtivo(Boolean ativo);
+
   List<HorarioTrabalho> findByFuncionarioIdAndDiaSemana(String idFuncionario, Integer diaSemana);
 }
