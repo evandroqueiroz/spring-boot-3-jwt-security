@@ -1,31 +1,46 @@
 package com.hubunity.core.domain.agendamentos;
 
-import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/agendamentos")
+@RequestMapping("/api/v1")
+@RequiredArgsConstructor
 public class AgendamentoController {
 
-  @Autowired
-  private AgendamentoService service;
+  private final AgendamentoService service;
 
-  @PostMapping
-  public ResponseEntity<AgendamentoResponse> create(@RequestBody @Valid AgendamentoRequest request) {
-    AgendamentoResponse novoAgendamento = service.create(request);
-    URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-        .buildAndExpand(novoAgendamento.getId()).toUri();
-    return ResponseEntity.created(uri).body(novoAgendamento);
+  @PostMapping("/agendamento")
+  public ResponseEntity<AgendamentoResponse> create(@RequestBody AgendamentoRequest request) {
+    AgendamentoResponse response = service.create(request);
+    return ResponseEntity.status(HttpStatus.CREATED).body(response);
   }
 
-  @GetMapping
+  @PutMapping("/agendamento/{id}")
+  public ResponseEntity<AgendamentoResponse> atualizar(@PathVariable String id,
+      @RequestBody AgendamentoRequest request) {
+    AgendamentoResponse response = service.atualizar(id, request);
+    return ResponseEntity.ok(response);
+  }
+
+  @GetMapping("/agendamentos")
   public ResponseEntity<List<AgendamentoResponse>> listAll() {
     return ResponseEntity.ok(service.listAll());
+  }
+
+  @GetMapping("/agendamento/{id}")
+  public ResponseEntity<AgendamentoResponse> buscarPorId(@PathVariable String id) {
+    AgendamentoResponse response = service.buscarPorId(id);
+    return ResponseEntity.ok(response);
+  }
+
+  @DeleteMapping("/agendamento/{id}")
+  public ResponseEntity<Void> deletar(@PathVariable String id) {
+    service.deletar(id);
+    return ResponseEntity.noContent().build();
   }
 }

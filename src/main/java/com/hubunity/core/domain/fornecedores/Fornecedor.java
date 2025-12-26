@@ -1,27 +1,22 @@
-package com.hubunity.core.domain.agendamentos;
+package com.hubunity.core.domain.fornecedores;
 
-import com.hubunity.core.domain.clientes.Cliente;
-import com.hubunity.core.domain.dicsituacao.Situacao;
 import com.hubunity.core.domain.empresa.Empresa;
-import com.hubunity.core.domain.funcionarios.Funcionario;
 import com.hubunity.core.domain.pessoas.Pessoa;
-import com.hubunity.core.domain.servicos.Servico;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
-@Table(name = "agendamentos", schema = "core")
+@Table(name = "fornecedores", schema = "core")
 @Getter
 @Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-public class Agendamento {
+public class Fornecedor {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,26 +28,8 @@ public class Agendamento {
   private Empresa empresa;
 
   @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "id_cliente", nullable = false)
-  private Cliente cliente;
-
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "id_funcionario", nullable = false)
-  private Funcionario funcionario;
-
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "id_servico", nullable = false)
-  private Servico servico;
-
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "id_situacao", nullable = false)
-  private Situacao situacao;
-
-  @Column(name = "data_agendamento", nullable = false)
-  private LocalDateTime dataAgendamento;
-
-  @Column(name = "observacao", columnDefinition = "TEXT")
-  private String observacao;
+  @JoinColumn(name = "id_pessoa", nullable = false)
+  private Pessoa pessoa;
 
   @Column(name = "created_at", nullable = false, updatable = false)
   private Date createdAt;

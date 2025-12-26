@@ -3,14 +3,17 @@ package com.hubunity.core.domain.agendamentos;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Data
-@NoArgsConstructor
+@Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class AgendamentoRequest {
 
   @NotBlank(message = "ID da empresa é obrigatório")
@@ -25,8 +28,7 @@ public class AgendamentoRequest {
   @NotBlank(message = "ID do serviço é obrigatório")
   private String idServico;
 
-  // Optional: if not provided, might default to 'Agendado' or similar in Service
-  private String idSituacao;
+  private String idSituacao = "A";
 
   @NotNull(message = "Data do agendamento é obrigatória")
   private LocalDateTime dataAgendamento;
@@ -50,4 +52,6 @@ class AgendamentoResponse {
   private String nomeSituacao;
   private LocalDateTime dataAgendamento;
   private String observacao;
+  private Date createdAt;
+  private Date updatedAt;
 }

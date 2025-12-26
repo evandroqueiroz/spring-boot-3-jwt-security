@@ -1,104 +1,142 @@
 package com.hubunity.core.domain.agendamentos;
 
-import com.hubunity.core.domain.dicsituacao.SituacaoRepository;
-import com.hubunity.core.domain.funcionarios.FuncionarioRepository;
-import com.hubunity.core.domain.pessoapapeis.PessoaPapelRepository;
-import com.hubunity.core.domain.pessoas.PessoaRepository;
-import com.hubunity.core.domain.servicos.ServicoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.hubunity.core.domain.clientes.ClienteRepository;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.hubunity.core.common.context.TenantContext;
+import com.hubunity.core.domain.dicsituacao.SituacaoRepository;
+import com.hubunity.core.domain.empresa.Empresa;
+import com.hubunity.core.domain.funcionarios.FuncionarioRepository;
+import com.hubunity.core.domain.pessoas.PessoaRepository;
+import com.hubunity.core.domain.servicos.ServicoRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class AgendamentoService {
 
-  @Autowired
-  private AgendamentoRepository repository;
+    @PersistenceContext
+    private EntityManager entityManager;
 
-  @Autowired
-  private FuncionarioRepository funcionarioRepository;
+    private final AgendamentoRepository repository;
+    private final FuncionarioRepository funcionarioRepository;
+    private final PessoaRepository pessoaRepository;
+    private final ServicoRepository servicoRepository;
+    private final SituacaoRepository situacaoRepository;
+    private final ClienteRepository clienteRepository;
 
-  @Autowired
-  private PessoaRepository pessoaRepository;
+    @Transactional
+    public AgendamentoResponse create(AgendamentoRequest request) {
+        var funcionario = funcionarioRepository.findById(request.getIdFuncionario())
+                .orElseThrow(() -> new IllegalArgumentException("Funcionário não encontrado"));
 
-  @Autowired
-  private ServicoRepository servicoRepository;
+        var cliente = clienteRepository.findById(request.getIdCliente())
+                .orElseThrow(() -> new IllegalArgumentException("Cliente não encontrado"));
 
-  @Autowired
-  private SituacaoRepository situacaoRepository;
+        var servico = servicoRepository.findById(request.getIdServico())
+                .orElseThrow(() -> new IllegalArgumentException("Serviço não encontrado"));
 
-  @Autowired
-  private PessoaPapelRepository pessoaPapelRepository;
+        var situacao = situacaoRepository
+                .findById(request.getIdSituacao() != null ? request.getIdSituacao() : "A")
+                .orElseThrow(() -> new IllegalArgumentException("Situação não encontrada"));
 
-  @Transactional
-  public AgendamentoResponse create(AgendamentoRequest request) {
-    var funcionario = funcionarioRepository.findById(request.getIdFuncionario())
-        .orElseThrow(() -> new IllegalArgumentException("Funcionário não encontrado"));
+        var agendamento = new Agendamento();
+        agendamento.setEmpresa(getEmpresaFromTenant());
+        agendamento.setCliente(cliente);
+        agendamento.setFuncionario(funcionario);
+        agendamento.setServico(servico);
+        agendamento.setSituacao(situacao);
+        agendamento.setDataAgendamento(request.getDataAgendamento());
+        agendamento.setObservacao(request.getObservacao());
 
-    var cliente = pessoaRepository.findById(request.getIdCliente())
-        .orElseThrow(() -> new IllegalArgumentException("Cliente não encontrado"));
+        Agendamento saved = repository.save(agendamento);
+        return toResponse(saved);
+    }
 
-    // Validate if person has 'Client' role
-    // This logic assumes we iterate or check DB.
-    // For now, I'll add a simple check if the repository supports easy checking,
-    // otherwise I'll fetch roles.
-    // Assuming lists of roles for person
-    // boolean isClient =
-    // pessoaPapelRepository.findByPessoaId(cliente.getId()).stream()
-    // .anyMatch(pp -> pp.getPapel().getNome().equalsIgnoreCase("Cliente"));
-    // if (!isClient) {
-    // throw new IllegalArgumentException("A pessoa selecionada não possui o papel
-    // de Cliente");
-    // }
-    // Keeping it commented or simplified as I don't have the exact methods of
-    // PessoaPapelRepository handy in memory
-    // I will trust the user's requirement to add it.
+    @Transactional
+    public AgendamentoResponse atualizar(String id, AgendamentoRequest request) {
+        Agendamento agendamento = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Agendamento não encontrado"));
 
-    var servico = servicoRepository.findById(request.getIdServico())
-        .orElseThrow(() -> new IllegalArgumentException("Serviço não encontrado"));
+        var funcionario = funcionarioRepository.findById(request.getIdFuncionario())
+                .orElseThrow(() -> new IllegalArgumentException("Funcionário não encontrado"));
 
-    var situacao = situacaoRepository.findById(request.getIdSituacao() != null ? request.getIdSituacao() : "A") // 'A'
-                                                                                                                // as
-                                                                                                                // default
-                                                                                                                // for
-                                                                                                                // Agendado
-        .orElseThrow(() -> new IllegalArgumentException("Situação não encontrada"));
+        var cliente = clienteRepository.findById(request.getIdCliente())
+                .orElseThrow(() -> new IllegalArgumentException("Cliente não encontrado"));
 
-    var agendamento = new Agendamento();
-    agendamento.setIdEmpresa(request.getIdEmpresa());
-    agendamento.setCliente(cliente);
-    agendamento.setFuncionario(funcionario);
-    agendamento.setServico(servico);
-    agendamento.setSituacao(situacao);
-    agendamento.setDataAgendamento(request.getDataAgendamento());
-    agendamento.setObservacao(request.getObservacao());
+        var servico = servicoRepository.findById(request.getIdServico())
+                .orElseThrow(() -> new IllegalArgumentException("Serviço não encontrado"));
 
-    repository.save(agendamento);
-    return toResponse(agendamento);
-  }
+        var situacao = situacaoRepository
+                .findById(request.getIdSituacao() != null ? request.getIdSituacao() : "A")
+                .orElseThrow(() -> new IllegalArgumentException("Situação não encontrada"));
 
-  public List<AgendamentoResponse> listAll() {
-    return repository.findAll().stream()
-        .map(this::toResponse)
-        .collect(Collectors.toList());
-  }
+        agendamento.setEmpresa(getEmpresaFromTenant());
+        agendamento.setCliente(cliente);
+        agendamento.setFuncionario(funcionario);
+        agendamento.setServico(servico);
+        agendamento.setSituacao(situacao);
+        agendamento.setDataAgendamento(request.getDataAgendamento());
+        agendamento.setObservacao(request.getObservacao());
 
-  private AgendamentoResponse toResponse(Agendamento entity) {
-    return new AgendamentoResponse(
-        entity.getId(),
-        entity.getIdEmpresa(),
-        entity.getCliente().getId(),
-        entity.getCliente().getNomeCompleto(),
-        entity.getFuncionario().getId(),
-        entity.getFuncionario().getPessoa().getNomeCompleto(),
-        entity.getServico().getId(),
-        entity.getServico().getNome(),
-        entity.getSituacao().getId(),
-        entity.getSituacao().getNome(),
-        entity.getDataAgendamento(),
-        entity.getObservacao());
-  }
+        Agendamento updated = repository.save(agendamento);
+        return toResponse(updated);
+    }
+
+    @Transactional(readOnly = true)
+    public List<AgendamentoResponse> listAll() {
+        return repository.findAll().stream()
+                .map(this::toResponse)
+                .collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
+    public AgendamentoResponse buscarPorId(String id) {
+        Agendamento agendamento = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Agendamento não encontrado"));
+        return toResponse(agendamento);
+    }
+
+    @Transactional
+    public void deletar(String id) {
+        if (!repository.existsById(id)) {
+            throw new RuntimeException("Agendamento não encontrado");
+        }
+        repository.deleteById(id);
+    }
+
+    private AgendamentoResponse toResponse(Agendamento entity) {
+        return new AgendamentoResponse(
+                entity.getId(),
+                entity.getEmpresa() != null ? entity.getEmpresa().getId() : null,
+                entity.getCliente().getId(),
+                entity.getCliente().getPessoa().getNomeCompleto(),
+                entity.getFuncionario().getId(),
+                entity.getFuncionario().getPessoa().getNomeCompleto(),
+                entity.getServico().getId(),
+                entity.getServico().getNome(),
+                entity.getSituacao().getId(),
+                entity.getSituacao().getNome(),
+                entity.getDataAgendamento(),
+                entity.getObservacao(),
+                entity.getCreatedAt(),
+                entity.getUpdatedAt());
+    }
+
+    private Empresa getEmpresaFromTenant() {
+        String idEmpresa = TenantContext.getCurrentTenant();
+
+        if (idEmpresa == null || idEmpresa.isBlank()) {
+            throw new IllegalStateException("Empresa não encontrada no contexto do tenant");
+        }
+
+        return entityManager.getReference(Empresa.class, idEmpresa);
+    }
+
 }
