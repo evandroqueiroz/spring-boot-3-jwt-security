@@ -1,8 +1,8 @@
 package com.hubunity.core.security.user;
 
-import com.hubunity.core.domain.empresa.Empresa;
-import com.hubunity.core.domain.pessoas.Pessoa;
-import com.hubunity.core.domain.dicsituacao.Situacao;
+import com.hubunity.core.domain.core.empresa.Empresa;
+import com.hubunity.core.domain.core.pessoas.Pessoa;
+import com.hubunity.core.domain.core.dicsituacao.Situacao;
 import com.hubunity.core.security.token.Token;
 import jakarta.persistence.*;
 
