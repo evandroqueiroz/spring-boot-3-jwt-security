@@ -1,6 +1,6 @@
 package com.hubunity.core.domain.core.empresa;
 
-import com.hubunity.core.domain.localidade.dto.LocalidadeResponseDTO;
+import com.hubunity.core.domain.localidade.endereco.EnderecoResponseDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,7 +15,7 @@ import java.util.Date;
 public class EmpresaResponseDTO {
   private String id;
   private String idSituacao;
-  private LocalidadeResponseDTO localidade;
+  private EnderecoResponseDTO endereco;
   private String razaoSocial;
   private String nomeFantasia;
   private String documento;

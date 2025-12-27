@@ -1,16 +1,8 @@
 package com.hubunity.core.domain.core.empresa;
 
 import com.hubunity.core.domain.core.dicsituacao.Situacao;
-import com.hubunity.core.domain.localidade.bairro.Bairro;
-import com.hubunity.core.domain.localidade.cep.Cep;
-import com.hubunity.core.domain.localidade.distrito.Distrito;
-import com.hubunity.core.domain.localidade.dto.*;
-import com.hubunity.core.domain.localidade.estado.Estado;
-import com.hubunity.core.domain.localidade.localidade.Localidade;
-import com.hubunity.core.domain.localidade.logradouro.Logradouro;
-import com.hubunity.core.domain.localidade.municipio.Municipio;
-import com.hubunity.core.domain.localidade.pais.Pais;
-import com.hubunity.core.domain.localidade.tipologradouro.TipoLogradouro;
+import com.hubunity.core.domain.localidade.endereco.Endereco;
+import com.hubunity.core.domain.localidade.endereco.EnderecoResponseDTO;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import lombok.RequiredArgsConstructor;
@@ -36,8 +28,8 @@ public class EmpresaService {
         if (request.getIdSituacao() == null) {
             throw new IllegalArgumentException("ID da Situação é obrigatório.");
         }
-        if (request.getIdLocalidade() == null) {
-            throw new IllegalArgumentException("ID da Localidade é obrigatório.");
+        if (request.getIdEndereco() == null) {
+            throw new IllegalArgumentException("ID do Endereço é obrigatório.");
         }
         if (request.getRazaoSocial() == null || request.getRazaoSocial().trim().isEmpty()) {
             throw new IllegalArgumentException("Razão Social é obrigatória.");
@@ -49,7 +41,7 @@ public class EmpresaService {
         Empresa empresa = new Empresa();
 
         empresa.setSituacao(entityManager.getReference(Situacao.class, request.getIdSituacao()));
-        empresa.setLocalidade(entityManager.getReference(Localidade.class, request.getIdLocalidade()));
+        empresa.setEndereco(entityManager.getReference(Endereco.class, request.getIdEndereco()));
         empresa.setRazaoSocial(request.getRazaoSocial());
         empresa.setNomeFantasia(request.getNomeFantasia());
         empresa.setDocumento(request.getDocumento());
@@ -70,8 +62,8 @@ public class EmpresaService {
         if (request.getIdSituacao() != null) {
             empresa.setSituacao(entityManager.getReference(Situacao.class, request.getIdSituacao()));
         }
-        if (request.getIdLocalidade() != null) {
-            empresa.setLocalidade(entityManager.getReference(Localidade.class, request.getIdLocalidade()));
+        if (request.getIdEndereco() != null) {
+            empresa.setEndereco(entityManager.getReference(Endereco.class, request.getIdEndereco()));
         }
         if (request.getRazaoSocial() != null) {
             empresa.setRazaoSocial(request.getRazaoSocial());
@@ -125,7 +117,7 @@ public class EmpresaService {
         return EmpresaResponseDTO.builder()
                 .id(empresa.getId())
                 .idSituacao(empresa.getSituacao() != null ? empresa.getSituacao().getId() : null)
-                .localidade(mapLocalidade(empresa.getLocalidade()))
+                .endereco(mapEndereco(empresa.getEndereco()))
                 .razaoSocial(empresa.getRazaoSocial())
                 .nomeFantasia(empresa.getNomeFantasia())
                 .documento(empresa.getDocumento())
@@ -136,103 +128,18 @@ public class EmpresaService {
                 .build();
     }
 
-    private LocalidadeResponseDTO mapLocalidade(Localidade localidade) {
-        if (localidade == null)
+    private EnderecoResponseDTO mapEndereco(Endereco endereco) {
+        if (endereco == null)
             return null;
 
-        return LocalidadeResponseDTO.builder()
-                .id(localidade.getId())
-                .pais(mapPais(localidade.getPais()))
-                .estado(mapEstado(localidade.getEstado()))
-                .municipio(mapMunicipio(localidade.getMunicipio()))
-                .distrito(mapDistrito(localidade.getDistrito()))
-                .bairro(mapBairro(localidade.getBairro()))
-                .tipoLogradouro(mapTipoLogradouro(localidade.getTipoLogradouro()))
-                .logradouro(mapLogradouro(localidade.getLogradouro()))
-                .cep(mapCep(localidade.getCep()))
-                .numero(localidade.getNumero())
-                .complemento(localidade.getComplemento())
-                .build();
-    }
-
-    private PaisResponseDTO mapPais(Pais pais) {
-        if (pais == null)
-            return null;
-        return PaisResponseDTO.builder()
-                .id(pais.getId())
-                .nome(pais.getNome())
-                .sigla(pais.getSigla())
-                .build();
-    }
-
-    private EstadoResponseDTO mapEstado(Estado estado) {
-        if (estado == null)
-            return null;
-        return EstadoResponseDTO.builder()
-                .id(estado.getId())
-                .pais(mapPais(estado.getPais()))
-                .nome(estado.getNome())
-                .sigla(estado.getSigla())
-                .build();
-    }
-
-    private MunicipioResponseDTO mapMunicipio(Municipio municipio) {
-        if (municipio == null)
-            return null;
-        return MunicipioResponseDTO.builder()
-                .id(municipio.getId())
-                .estado(mapEstado(municipio.getEstado()))
-                .nome(municipio.getNome())
-                .build();
-    }
-
-    private DistritoResponseDTO mapDistrito(Distrito distrito) {
-        if (distrito == null)
-            return null;
-        return DistritoResponseDTO.builder()
-                .id(distrito.getId())
-                .municipio(mapMunicipio(distrito.getMunicipio()))
-                .nome(distrito.getNome())
-                .build();
-    }
-
-    private BairroResponseDTO mapBairro(Bairro bairro) {
-        if (bairro == null)
-            return null;
-        return BairroResponseDTO.builder()
-                .id(bairro.getId())
-                .municipio(mapMunicipio(bairro.getMunicipio()))
-                .nome(bairro.getNome())
-                .build();
-    }
-
-    private TipoLogradouroResponseDTO mapTipoLogradouro(TipoLogradouro tipo) {
-        if (tipo == null)
-            return null;
-        return TipoLogradouroResponseDTO.builder()
-                .id(tipo.getId())
-                .nome(tipo.getNome())
-                .build();
-    }
-
-    private LogradouroResponseDTO mapLogradouro(Logradouro logradouro) {
-        if (logradouro == null)
-            return null;
-        return LogradouroResponseDTO.builder()
-                .id(logradouro.getId())
-                .tipoLogradouro(mapTipoLogradouro(logradouro.getTipoLogradouro()))
-                .nome(logradouro.getNome())
-                .build();
-    }
-
-    private CepResponseDTO mapCep(Cep cep) {
-        if (cep == null)
-            return null;
-        return CepResponseDTO.builder()
-                .id(cep.getId())
-                .logradouro(mapLogradouro(cep.getLogradouro()))
-                .bairro(mapBairro(cep.getBairro()))
-                .cep(cep.getCep())
+        return EnderecoResponseDTO.builder()
+                .id(endereco.getId())
+                .idMunicipio(endereco.getMunicipio() != null ? endereco.getMunicipio().getId() : null)
+                .logradouro(endereco.getLogradouro())
+                .numero(endereco.getNumero())
+                .complemento(endereco.getComplemento())
+                .bairro(endereco.getBairro())
+                .cep(endereco.getCep())
                 .build();
     }
 

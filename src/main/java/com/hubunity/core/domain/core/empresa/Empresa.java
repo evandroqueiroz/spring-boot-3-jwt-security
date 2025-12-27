@@ -1,7 +1,7 @@
 package com.hubunity.core.domain.core.empresa;
 
 import com.hubunity.core.domain.core.dicsituacao.Situacao;
-import com.hubunity.core.domain.localidade.localidade.Localidade;
+import com.hubunity.core.domain.localidade.endereco.Endereco;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -27,7 +27,7 @@ public class Empresa {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "id_localidade", nullable = false)
-    private Localidade localidade;
+    private Endereco endereco;
 
     @Column(name = "razao_social", length = 255, nullable = false)
     private String razaoSocial;

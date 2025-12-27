@@ -1,29 +1,29 @@
 package com.hubunity.core.domain.localidade.municipio;
 
+import com.hubunity.core.common.base.BaseEntity;
 import com.hubunity.core.domain.localidade.estado.Estado;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
-@Table(name = "gg_municipios", schema = "localidade")
+@Table(name = "municipio", schema = "localidade")
 @Getter
 @Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Municipio {
+@EntityListeners(AuditingEntityListener.class)
+public class Municipio extends BaseEntity {
 
-  @Id
-  @Column(length = 38, nullable = false, unique = true, updatable = false)
-  private String id;
-
-  @ManyToOne(optional = false)
   @JoinColumn(name = "id_estado", nullable = false)
+  @ManyToOne(fetch = FetchType.LAZY)
   private Estado estado;
 
-  @Column(name = "nome", length = 150, nullable = false)
+  @Column(name = "nome", nullable = false, length = 150)
   private String nome;
 
-  @Column(name = "codigo_ibge", length = 20)
+  @Column(name = "codigo_ibge", length = 7, unique = true)
   private String codigoIbge;
+
 }

@@ -12,4 +12,5 @@ public abstract class BaseTenantEntity extends BaseEntity {
 
     @Column(name = "id_empresa", length = 38)
     protected String idEmpresa;
+
 }

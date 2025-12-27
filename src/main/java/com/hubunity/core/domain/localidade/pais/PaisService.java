@@ -2,32 +2,66 @@ package com.hubunity.core.domain.localidade.pais;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class PaisService {
 
-  private final PaisRepository repository;
+    private final PaisRepository paisRepository;
 
-  public Pais salvar(Pais pais) {
-    return repository.save(pais);
-  }
+    @Transactional
+    public PaisResponse criar(PaisRequest request) {
+        Pais pais = new Pais();
+        pais.setNome(request.getNome());
+        pais.setSigla(request.getSigla());
 
-  public Pais atualizar(Pais pais) {
-    return repository.save(pais);
-  }
+        Pais saved = paisRepository.save(pais);
+        return toResponse(saved);
+    }
 
-  public List<Pais> buscarTodos() {
-    return repository.findAll();
-  }
+    @Transactional
+    public PaisResponse atualizar(String id, PaisRequest request) {
+        Pais pais = paisRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("País não encontrado"));
 
-  public Pais buscarPorId(String id) {
-    return repository.findById(id).orElseThrow(() -> new RuntimeException("País não encontrado"));
-  }
+        pais.setNome(request.getNome());
+        pais.setSigla(request.getSigla());
 
-  public void deletar(String id) {
-    repository.deleteById(id);
-  }
+        Pais updated = paisRepository.save(pais);
+        return toResponse(updated);
+    }
+
+    @Transactional(readOnly = true)
+    public List<PaisResponse> listarTodos() {
+        return paisRepository.findAll().stream()
+                .map(this::toResponse)
+                .collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
+    public PaisResponse buscarPorId(String id) {
+        Pais pais = paisRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("País não encontrado"));
+        return toResponse(pais);
+    }
+
+    @Transactional
+    public void deletar(String id) {
+        if (!paisRepository.existsById(id)) {
+            throw new RuntimeException("País não encontrado");
+        }
+        paisRepository.deleteById(id);
+    }
+
+    private PaisResponse toResponse(Pais pais) {
+        return new PaisResponse(
+                pais.getId(),
+                pais.getNome(),
+                pais.getSigla()
+        );
+    }
 }

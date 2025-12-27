@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class EmpresaRequest {
 
     private String idSituacao = "A";
-    private String idLocalidade;
+    private String idEndereco;
     private String razaoSocial;
     private String nomeFantasia;
     private String documento;
@@ -25,12 +25,12 @@ public class EmpresaRequest {
         this.idSituacao = idSituacao;
     }
 
-    public String getIdLocalidade() {
-        return idLocalidade;
+    public String getIdEndereco() {
+        return idEndereco;
     }
 
-    public void setIdLocalidade(String idLocalidade) {
-        this.idLocalidade = idLocalidade;
+    public void setIdEndereco(String idEndereco) {
+        this.idEndereco = idEndereco;
     }
 
     public String getRazaoSocial() {

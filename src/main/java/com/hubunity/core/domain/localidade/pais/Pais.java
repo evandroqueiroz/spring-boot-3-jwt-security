@@ -1,27 +1,27 @@
 package com.hubunity.core.domain.localidade.pais;
 
+import com.hubunity.core.common.base.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.Table;
 import lombok.*;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
-@Table(name = "gg_pais", schema = "localidade")
+@Table(name = "pais", schema = "localidade")
 @Getter
 @Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Pais {
+@EntityListeners(AuditingEntityListener.class)
+public class Pais extends BaseEntity {
 
-  @Id
-  @Column(length = 38, nullable = false, unique = true, updatable = false)
-  private String id;
+    @Column(name = "nome")
+    private String nome;
 
-  @Column(name = "nome", length = 150)
-  private String nome;
+    @Column(name = "sigla")
+    private String sigla;
 
-  @Column(name = "sigla", length = 2)
-  private String sigla;
 }

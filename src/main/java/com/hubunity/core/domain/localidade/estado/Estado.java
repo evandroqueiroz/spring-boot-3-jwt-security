@@ -1,29 +1,29 @@
 package com.hubunity.core.domain.localidade.estado;
 
+import com.hubunity.core.common.base.BaseEntity;
 import com.hubunity.core.domain.localidade.pais.Pais;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
-@Table(name = "gg_estados", schema = "localidade")
+@Table(name = "estado", schema = "localidade")
 @Getter
 @Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Estado {
+@EntityListeners(AuditingEntityListener.class)
+public class Estado extends BaseEntity {
 
-  @Id
-  @Column(length = 38, nullable = false, unique = true, updatable = false)
-  private String id;
+    @JoinColumn(name = "id_pais")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Pais pais;
 
-  @ManyToOne
-  @JoinColumn(name = "id_pais")
-  private Pais pais;
+    @Column(name = "nome")
+    private String nome;
 
-  @Column(name = "nome", length = 150)
-  private String nome;
+    @Column(name = "sigla")
+    private String sigla;
 
-  @Column(name = "sigla", length = 2)
-  private String sigla;
 }
